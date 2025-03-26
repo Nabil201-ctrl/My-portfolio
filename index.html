@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nabil Abubakar - Web Developer</title>
+  <style>
+    /* Global Styles */
+    :root {
+      --primary: #0070f3;
+      --primary-dark: #0050d0;
+      --secondary: #6c63ff;
+      --dark: #111827;
+      --light: #f3f4f6;
+      --text: #e2e8f0;
+      --text-muted: #9ca3af;
+      --spacing-sm: 0.5rem;
+      --spacing-md: 1rem;
+      --spacing-lg: 2rem;
+      --spacing-xl: 4rem;
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    
+    body {
+      background-color: var(--dark);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    a:hover {
+      color: var(--secondary);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-md);
+    }
+    
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0, 118, 243, 0.3);
+    }
+    
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 118, 243, 0.4);
+      color: white;
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      box-shadow: none;
+    }
+    
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .section {
+      padding: var(--spacing-xl) 0;
+      position: relative;
+    }
+    
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: var(--spacing-lg);
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+      z-index: 1;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      height: 40%;
+      width: 30%;
+      background: var(--primary);
+      bottom: 10%;
+      left: 0;
+      z-index: -1;
+      opacity: 0.3;
+      border-radius: 4px;
+    }
+    
+    .text-primary {
+      color: var(--primary);
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+    
+    .flex {
+      display: flex;
+    }
+    
+    .flex-center {
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .flex-between {
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .flex-col {
+      flex-direction: column;
+    }
+    
+    .grid {
+      display: grid;
+    }
+    
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-lg);
+    }
+    
+    /* Header & Navigation */
+    .header {
+      padding: var(--spacing-md) 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+      transition: var(--transition);
+      background-color: rgba(17, 24, 39, 0.9);
+      backdrop-filter: blur(10px);
+    }
+    
+    .header.scrolled {
+      padding: 0.8rem 0;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: white;
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo span {
+      color: var(--primary);
+    }
+    
+    .logo-circle {
+      width: 35px;
+      height: 35px;
+      background-color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      font-weight: 800;
+      color: white;
+    }
+    
+    .nav-list {
+      list-style: none;
+      display: flex;
+      gap: var(--spacing-lg);
+    }
+    
+    .nav-item a {
+      color: var(--text);
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .nav-item a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: var(--primary);
+      transition: var(--transition);
+    }
+    
+    .nav-item a:hover {
+      color: var(--primary);
+    }
+    
+    .nav-item a:hover::after {
+      width: 100%;
+    }
+    
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+    
+    .hero-content {
+      flex: 1;
+      z-index: 2;
+    }
+    
+    .hero-image {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      z-index: 2;
+    }
+    
+    .hero-img {
+      max-width: 100%;
+      animation: float 3s ease-in-out infinite;
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      box-shadow: 0 25px 50px -12px rgba(0, 118, 243, 0.25);
+      transition: border-radius 1s ease-in-out;
+    }
+    
+    .hero-img:hover {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+    
+    .hero-subtitle {
+      display: inline-block;
+      background-color: rgba(0, 118, 243, 0.1);
+      color: var(--primary);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      backdrop-filter: blur(10px);
+    }
+    
+    .hero-title {
+      font-size: 3.5rem;
+      line-height: 1.2;
+      margin-bottom: var(--spacing-md);
+      font-weight: 800;
+    }
+    
+    .hero-description {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: var(--spacing-lg);
+      max-width: 80%;
+    }
+    
+    .hero-cta {
+      display: flex;
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-lg);
+    }
+    
+    .shape {
+      position: absolute;
+      z-index: 1;
+    }
+    
+    .shape-1 {
+      top: 20%;
+      left: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(var(--primary), transparent 70%);
+      opacity: 0.05;
+      border-radius: 50%;
+      filter: blur(50px);
+      animation: pulse 10s infinite alternate;
+    }
+    
+    .shape-2 {
+      bottom: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(var(--secondary), transparent 70%);
+      opacity: 0.05;
+      border-radius: 50%;
+      filter: blur(60px);
+      animation: pulse 8s infinite alternate-reverse;
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.05;
+      }
+      100% {
+        transform: scale(1.2);
+        opacity: 0.08;
+      }
+    }
+    
+    /* Services Section */
+    .service-card {
+      background-color: rgba(255, 255, 255, 0.03);
+      border-radius: var(--border-radius);
+      padding: var(--spacing-lg);
+      transition: var(--transition);
+      border: 1px solid transparent;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(var(--primary-rgb), 0.2);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(0, 118, 243, 0.05), transparent);
+      opacity: 0;
+      transition: var(--transition);
+    }
+    
+    .service-card:hover::before {
+      opacity: 1;
+    }
+    
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      background-color: rgba(var(--primary-rgb), 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--spacing-md);
+      color: var(--primary);
+      font-size: 1.5rem;
+      transition: var(--transition);
+    }
+    
+    .service-card:hover .service-icon {
+      background-color: var(--primary);
+      color: white;
+      transform: scale(1.1);
+    }
+    
+    .service-title {
+      font-size: 1.5rem;
+      margin-bottom: var(--spacing-md);
+      font-weight: 700;
+    }
+    
+    .service-description {
+      color: var(--text-muted);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .learn-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+    
+    .learn-more:hover {
+      gap: 0.75rem;
+    }
+    
+    /* About Section */
+    .about {
+      position: relative;
+    }
+    
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-xl);
+      align-items: center;
+    }
+    
+    .about-image {
+      position: relative;
+    }
+    
+    .about-img-wrap {
+      position: relative;
+      z-index: 2;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+    
+    .about-img {
+      width: 100%;
+      height: auto;
+      transition: var(--transition);
+    }
+    
+    .about-img-wrap:hover .about-img {
+      transform: scale(1.05);
+    }
+    
+    .about-img-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 20px;
+      left: 20px;
+      background-color: var(--primary);
+      border-radius: var(--border-radius);
+      z-index: 1;
+      opacity: 0.1;
+    }
+    
+    .experience-badges {
+      display: flex;
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
+    }
+    
+    .badge {
+      text-align: center;
+    }
+    
+    .badge-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      display: block;
+      line-height: 1;
+    }
+    
+    .badge-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    
+    .about-title {
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .about-subtitle {
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+      display: block;
+    }
+    
+    .about-description {
+      color: var(--text-muted);
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    /* Tools Section */
+    .tools {
+      background-color: rgba(255, 255, 255, 0.02);
+      border-radius: var(--border-radius);
+      padding: var(--spacing-xl);
+    }
+    
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: var(--spacing-lg);
+    }
+    
+    .tool-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: var(--transition);
+    }
+    
+    .tool-item:hover {
+      transform: translateY(-5px);
+    }
+    
+    .tool-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: var(--spacing-sm);
+      transition: var(--transition);
+    }
+    
+    .tool-item:hover .tool-icon {
+      transform: scale(1.1);
+    }
+    
+    .tool-name {
+      font-weight: 500;
+    }
+    
+    /* Footer */
+    .footer {
+      padding: var(--spacing-xl) 0;
+      background-color: rgba(0, 0, 0, 0.2);
+      margin-top: var(--spacing-xl);
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: var(--spacing-lg);
+    }
+    
+    .footer-logo {
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .footer-description {
+      color: var(--text-muted);
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: var(--spacing-md);
+    }
+    
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      transition: var(--transition);
+    }
+    
+    .social-link:hover {
+      background-color: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+    }
+    
+    .footer-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-link {
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .footer-link a {
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+    
+    .footer-link a:hover {
+      color: var(--primary);
+      padding-left: 5px;
+    }
+    
+    .copyright {
+      margin-top: var(--spacing-xl);
+      padding-top: var(--spacing-lg);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      color: var(--text-muted);
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 var(--spacing-lg);
+      }
+      
+      .nav-list {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: var(--dark);
+        flex-direction: column;
+        gap: 0;
+        height: 0;
+        overflow: hidden;
+        transition: var(--transition);
+        opacity: 0;
+        visibility: hidden;
+      }
+      
+      .nav-list.active {
+        height: auto;
+        opacity: 1;
+        visibility: visible;
+        padding: var(--spacing-lg) 0;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+      
+      .nav-item {
+        width: 100%;
+        text-align: center;
+        padding: var(--spacing-sm) 0;
+      }
+      
+      .mobile-toggle {
+        display: block;
+      }
+      
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 120px;
+      }
+      
+      .hero-content, .hero-image {
+        width: 100%;
+      }
+      
+      .hero-description {
+        margin: 0 auto var(--spacing-lg);
+      }
+      
+      .hero-cta {
+        justify-content: center;
+      }
+      
+      .hero-image {
+        order: -1;
+        margin-bottom: var(--spacing-xl);
+      }
+      
+      .hero-img {
+        max-width: 70%;
+        margin: 0 auto;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+      }
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.5s ease forwards;
+    }
+    
+    .delay-1 {
+      animation-delay: 0.1s;
+    }
+    
+    .delay-2 {
+      animation-delay: 0.2s;
+    }
+    
+    .delay-3 {
+      animation-delay: 0.3s;
+    }
+    
+    /* Scroll animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+    
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Cursor animation */
+    .cursor {
+      display: inline-block;
+      width: 3px;
+      height: 1em;
+      background-color: var(--primary);
+      margin-left: 5px;
+      animation: blink 1s infinite;
+      vertical-align: middle;
+    }
+    
+    @keyframes blink {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+    }
+
+
+     /* Portfolio Styles */
+  .portfolio-filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .portfolio-filter-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: var(--transition);
+    position: relative;
+  }
+  
+  .portfolio-filter-btn::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary);
+    transition: var(--transition);
+  }
+  
+  .portfolio-filter-btn:hover, .portfolio-filter-btn.active {
+    color: var(--primary);
+  }
+  
+  .portfolio-filter-btn:hover::after, .portfolio-filter-btn.active::after {
+    width: 50%;
+  }
+  
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--spacing-lg);
+  }
+  
+  .portfolio-item {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    position: relative;
+    transition: var(--transition);
+    height: 280px;
+  }
+  
+  .portfolio-img-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .portfolio-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+  }
+  
+  .portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition);
+  }
+  
+  .portfolio-item:hover .portfolio-overlay {
+    opacity: 1;
+  }
+  
+  .portfolio-item:hover .portfolio-img {
+    transform: scale(1.1);
+  }
+  
+  .portfolio-overlay-content {
+    text-align: center;
+    padding: var(--spacing-lg);
+    transform: translateY(20px);
+    transition: var(--transition);
+  }
+  
+  .portfolio-item:hover .portfolio-overlay-content {
+    transform: translateY(0);
+  }
+  
+  .portfolio-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: white;
+  }
+  
+  .portfolio-category {
+    color: var(--primary);
+    font-weight: 500;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .portfolio-links {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+  }
+  
+  .portfolio-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: var(--transition);
+  }
+  
+  .portfolio-link:hover {
+    background-color: var(--primary);
+    color: white;
+  }
+  
+  /* Portfolio Modal */
+  .portfolio-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+  }
+  
+  .portfolio-modal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .portfolio-modal-content {
+    background-color: var(--dark);
+    border-radius: var(--border-radius);
+    width: 100%;
+    max-width: 1000px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(50px);
+    transition: var(--transition);
+  }
+  
+  .portfolio-modal.active .portfolio-modal-content {
+    transform: translateY(0);
+  }
+  
+  .portfolio-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+    transition: var(--transition);
+  }
+  
+  .portfolio-modal-close:hover {
+    color: var(--primary);
+    transform: rotate(90deg);
+  }
+  
+  .portfolio-modal-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-xl);
+  }
+  
+  .portfolio-modal-image {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+  }
+  
+  .portfolio-modal-image img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+  }
+  
+  .portfolio-modal-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+  }
+  
+  .portfolio-modal-category {
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .portfolio-modal-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .portfolio-modal-info-item h4 {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  
+  .portfolio-modal-info-item p {
+    color: var(--text-muted);
+  }
+  
+  .portfolio-modal-desc {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .portfolio-modal-desc h4 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .portfolio-modal-desc p {
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  
+  /* Responsive Modal */
+  @media (max-width: 768px) {
+    .portfolio-modal-body {
+      grid-template-columns: 1fr;
+    }
+    
+    .portfolio-grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+    
+    .portfolio-modal-info {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .portfolio-modal-info {
+      grid-template-columns: 1fr;
+    }
+  }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container flex-between">
+      <a href="#" class="logo">
+        <div class="logo-circle">N</div>
+        <span>Nabil</span> Abubakar
+      </a>
+      
+      <nav>
+        <ul class="nav-list" id="nav-list">
+          <li class="nav-item"><a href="#home">Home</a></li>
+          <li class="nav-item"><a href="#services">Services</a></li>
+          <li class="nav-item"><a href="#about">About</a></li>
+          <li class="nav-item"><a href="#tools">Tools</a></li>
+          <li class="nav-item"><a href="#contact">Contact</a></li>
+        </ul>
+        
+        <button class="mobile-toggle" id="mobile-toggle">☰</button>
+      </nav>
+      
+      <a href="#contact" class="btn">Let's Talk</a>
+    </div>
+  </header>
+  
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    
+    <div class="container flex">
+      <div class="hero-content">
+        <span class="hero-subtitle fade-in">Hello There!</span>
+        <h1 class="hero-title fade-in delay-1">
+          I'm Nabil Abubakar, <br>
+          <span class="text-primary">Web Developer</span> 
+          based in USA.
+        </h1>
+        <p class="hero-description fade-in delay-2">
+          An experienced Web Developer with 5+ years in the field, 
+          specializing in creating responsive websites and dynamic web applications.
+        </p>
+        <div class="hero-cta fade-in delay-3">
+          <a href="#contact" class="btn">Get In Touch</a>
+          <a href="#" class="btn btn-outline">Download CV</a>
+        </div>
+      </div>
+      
+      <div class="hero-image">
+        <img src="/api/placeholder/600/600" alt="Nabil Abubakar" class="hero-img">
+      </div>
+    </div>
+  </section>
+  
+  <!-- Services Section -->
+  <section class="section" id="services">
+    <div class="container">
+      <span class="about-subtitle reveal">My Specialization</span>
+      <h2 class="section-title reveal">Services I Provide</h2>
+      
+      <div class="grid grid-3">
+        <!-- Service 1 -->
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="3" y1="9" x2="21" y2="9"></line>
+              <line x1="9" y1="21" x2="9" y2="9"></line>
+            </svg>
+          </div>
+          <h3 class="service-title">UI/UX Design</h3>
+          <p class="service-description">
+            Creating intuitive user interfaces and smooth user experiences that keep visitors engaged and increase conversion rates.
+          </p>
+          <a href="#" class="learn-more">
+            Learn more 
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+        
+        <!-- Service 2 -->
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h3 class="service-title">Application Design</h3>
+          <p class="service-description">
+            Developing high-performance web applications with clean code and optimal user experience for businesses and startups.
+          </p>
+          <a href="#" class="learn-more">
+            Learn more 
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+        
+        <!-- Service 3 -->
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <h3 class="service-title">Website Design</h3>
+          <p class="service-description">
+            Crafting responsive, SEO-friendly websites that look great on all devices and help businesses establish a strong online presence.
+          </p>
+          <a href="#" class="learn-more">
+            Learn more 
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- About Section -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image reveal">
+          <div class="about-img-wrap">
+            <img src="/api/placeholder/600/600" alt="About Nabil Abubakar" class="about-img">
+          </div>
+          <div class="about-img-bg"></div>
+        </div>
+        
+        <div class="about-content reveal">
+          <span class="about-subtitle">About Me</span>
+          <h2 class="section-title about-title">Who is Nabil Abubakar?</h2>
+          
+          <p class="about-description">
+            I'm a passionate web developer with expertise in creating modern, responsive, and user-friendly websites and applications. 
+            With a strong foundation in HTML, CSS, JavaScript, and various frameworks, I bring ideas to life through clean code and thoughtful design.
+          </p>
+          
+          <p class="about-description">
+            My goal is to deliver web solutions that not only look great but also provide exceptional user experiences and help businesses achieve their objectives online.
+          </p>
+          
+          <div class="experience-badges">
+            <div class="badge">
+              <span class="badge-number" id="counter-1">400+</span>
+              <span class="badge-text">Projects Completed</span>
+            </div>
+            
+            <div class="badge">
+              <span class="badge-number" id="counter-2">50+</span>
+              <span class="badge-text">Happy Clients</span>
+            </div>
+            
+            <div class="badge">
+              <span class="badge-number" id="counter-3">18+</span>
+              <span class="badge-text">Years of Experience</span>
+            </div>
+          </div>
+          
+          <a href="#contact" class="btn">Contact Me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Tools Section -->
+  <section class="section" id="tools">
+    <div class="container">
+      <span class="about-subtitle reveal">My Favorite Tools</span>
+      <h2 class="section-title reveal">Exploring the Tools <br>Behind My Designs</h2>
+      
+      <div class="tools reveal">
+        <div class="tools-grid">
+          <!-- Tool 1 -->
+          <div class="tool-item">
+            <img src="/api/placeholder/60/60" alt="HTML5" class="tool-icon">
+            <span class="tool-name">HTML5</span>
+          </div>
+          
+          <!-- Tool 2 -->
+          <div class="tool-item">
+            <img src="/api/placeholder/60/60" alt="CSS3" class="tool-icon">
+            <span class="tool-name">CSS3</span>
+          </div>
+          
+          <!-- Tool 3 -->
+          <div class="tool-item">
+            <img src="/api/placeholder/60/60" alt="JavaScript" class="tool-icon">
+            <span class="tool-name">JavaScript</span>
+          </div>
+          
+          <!-- Tool 4 -->
+          <div class="tool-item">
+            <img src="/api/placeholder/60/60" alt="React" class="tool-icon">
+            <span class="tool-name">React</span>
+          </div>
+          
+          <!-- Tool 5 -->
+          <div class="tool-item">
+            <img src="/api/placeholder/60/60" alt="Node.js" class="tool-icon">
+            <span class="tool-name">Node.js</span>
+          </div>
+          
+          <!-- Tool 6 -->
+          <div class="tool-item">
+            <img src="/api/placeholder/60/60" alt="Tailwind CSS" class="tool-icon">
+            <span class="tool-name">Tailwind CSS</span>
+          </div>
+          
+          <!-- Tool 7 -->
+          <div class="tool-item">
+            <img src="/api/placeholder/60/60" alt="MongoDB" class="tool-icon">
+            <span class="tool-name">MongoDB</span>
+          </div>
+          
+          <!-- Tool 8 -->
+          <div class="tool-item">
+            <img src="/api/placeholder/60/60" alt="Git" class="tool-icon">
+            <span class="tool-name">Git</span>
+          </div>
+          
+          <!-- Tool 9 -->
+          <div class="tool-item">
+            <img src="/api/placeholder/60/60" alt="Figma" class="tool-icon">
+            <span class="tool-name">Figma</span>
+          </div>
+          
+          <!-- Tool 10 -->
+          <div class="tool-item">
+            <img src="/api/placeholder/60/60" alt="VS Code" class="tool-icon">
+            <span class="tool-name">VS Code</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Portfolio Section -->
+<section class="section" id="portfolio">
+    <div class="container">
+      <span class="about-subtitle reveal">My Work</span>
+      <h2 class="section-title reveal">Recent Projects</h2>
+      
+      <div class="portfolio-filter reveal">
+        <button class="portfolio-filter-btn active" data-filter="all">All</button>
+        <button class="portfolio-filter-btn" data-filter="web">Web Design</button>
+        <button class="portfolio-filter-btn" data-filter="app">Applications</button>
+        <button class="portfolio-filter-btn" data-filter="ui">UI/UX</button>
+      </div>
+      
+      <div class="portfolio-grid reveal">
+        <!-- Portfolio Item 1 -->
+        <div class="portfolio-item" data-category="web">
+          <div class="portfolio-img-wrap">
+            <img src="/api/placeholder/600/400" alt="E-commerce Website" class="portfolio-img">
+            <div class="portfolio-overlay">
+              <div class="portfolio-overlay-content">
+                <h3 class="portfolio-title">E-commerce Platform</h3>
+                <p class="portfolio-category">Web Design</p>
+                <div class="portfolio-links">
+                  <a href="#" class="portfolio-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <a href="#" class="portfolio-link portfolio-details-trigger" data-id="1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Portfolio Item 2 -->
+        <div class="portfolio-item" data-category="app">
+          <div class="portfolio-img-wrap">
+            <img src="/api/placeholder/600/400" alt="Task Management App" class="portfolio-img">
+            <div class="portfolio-overlay">
+              <div class="portfolio-overlay-content">
+                <h3 class="portfolio-title">Task Management App</h3>
+                <p class="portfolio-category">Application</p>
+                <div class="portfolio-links">
+                  <a href="#" class="portfolio-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <a href="#" class="portfolio-link portfolio-details-trigger" data-id="2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Portfolio Item 3 -->
+        <div class="portfolio-item" data-category="ui">
+          <div class="portfolio-img-wrap">
+            <img src="/api/placeholder/600/400" alt="Dashboard UI" class="portfolio-img">
+            <div class="portfolio-overlay">
+              <div class="portfolio-overlay-content">
+                <h3 class="portfolio-title">Dashboard UI</h3>
+                <p class="portfolio-category">UI/UX Design</p>
+                <div class="portfolio-links">
+                  <a href="#" class="portfolio-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <a href="#" class="portfolio-link portfolio-details-trigger" data-id="3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Portfolio Item 4 -->
+        <div class="portfolio-item" data-category="web">
+          <div class="portfolio-img-wrap">
+            <img src="/api/placeholder/600/400" alt="Startup Landing Page" class="portfolio-img">
+            <div class="portfolio-overlay">
+              <div class="portfolio-overlay-content">
+                <h3 class="portfolio-title">Startup Landing Page</h3>
+                <p class="portfolio-category">Web Design</p>
+                <div class="portfolio-links">
+                  <a href="#" class="portfolio-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <a href="#" class="portfolio-link portfolio-details-trigger" data-id="4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Portfolio Item 5 -->
+        <div class="portfolio-item" data-category="app">
+          <div class="portfolio-img-wrap">
+            <img src="/api/placeholder/600/400" alt="Fitness Tracking App" class="portfolio-img">
+            <div class="portfolio-overlay">
+              <div class="portfolio-overlay-content">
+                <h3 class="portfolio-title">Fitness Tracking App</h3>
+                <p class="portfolio-category">Application</p>
+                <div class="portfolio-links">
+                  <a href="#" class="portfolio-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <a href="#" class="portfolio-link portfolio-details-trigger" data-id="5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Portfolio Item 6 -->
+        <div class="portfolio-item" data-category="ui">
+          <div class="portfolio-img-wrap">
+            <img src="/api/placeholder/600/400" alt="Banking App UI" class="portfolio-img">
+            <div class="portfolio-overlay">
+              <div class="portfolio-overlay-content">
+                <h3 class="portfolio-title">Banking App UI</h3>
+                <p class="portfolio-category">UI/UX Design</p>
+                <div class="portfolio-links">
+                  <a href="#" class="portfolio-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <a href="#" class="portfolio-link portfolio-details-trigger" data-id="6">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Portfolio Modal -->
+  <div class="portfolio-modal" id="portfolio-modal">
+    <div class="portfolio-modal-content">
+      <button class="portfolio-modal-close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      
+      <div class="portfolio-modal-body">
+        <div class="portfolio-modal-image">
+          <img src="/api/placeholder/800/500" alt="Project Details" id="modal-image">
+        </div>
+        
+        <div class="portfolio-modal-details">
+          <h2 class="portfolio-modal-title" id="modal-title">Project Title</h2>
+          <p class="portfolio-modal-category" id="modal-category">Category</p>
+          
+          <div class="portfolio-modal-info">
+            <div class="portfolio-modal-info-item">
+              <h4>Client</h4>
+              <p id="modal-client">Global Company</p>
+            </div>
+            
+            <div class="portfolio-modal-info-item">
+              <h4>Date</h4>
+              <p id="modal-date">January 2025</p>
+            </div>
+            
+            <div class="portfolio-modal-info-item">
+              <h4>Skills</h4>
+              <p id="modal-skills">HTML, CSS, JavaScript, React</p>
+            </div>
+          </div>
+          
+          <div class="portfolio-modal-desc">
+            <h4>Project Description</h4>
+            <p id="modal-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim.</p>
+          </div>
+          
+          <a href="#" class="btn" id="modal-link">View Project</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Contact Section -->
+  <section class="section" id="contact">
+    <div class="container">
+      <span class="about-subtitle reveal text-center">Get In Touch</span>
+      <h2 class="section-title reveal text-center">Let's Work Together</h2>
+      
+      <div class="flex-center">
+        <a href="mailto:contact@nabilabubakar.com" class="btn">contact@nabilabubakar.com</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-info">
+          <a href="#" class="logo footer-logo">
+            <div class="logo-circle">N</div>
+            <span>Nabil</span> Abubakar
+          </a>
+          
+          <p class="footer-description">
+            A professional web developer helping businesses and individuals establish a strong online presence through modern, responsive websites.
+          </p>
+          
+          <div class="social-links">
+            <a href="#" class="social-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            
+            <a href="#" class="social-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            
+            <a href="#" class="social-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+            
+            <a href="#" class="social-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-nav">
+          <h4 class="footer-title">Navigation</h4>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="#home">Home</a></li>
+            <li class="footer-link"><a href="#services">Services</a></li>
+            <li class="footer-link"><a href="#about">About</a></li>
+            <li class="footer-link"><a href="#tools">Tools</a></li>
+            <li class="footer-link"><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-contact">
+          <h4 class="footer-title">Contact</h4>
+          <ul class="footer-links">
+            <li class="footer-link">contact@nabilabubakar.com</li>
+            <li class="footer-link">+1 (555) 123-4567</li>
+            <li class="footer-link">123 Web Developer St, San Francisco, CA</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2025 Nabil Abubakar. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Menu Toggle
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const navList = document.getElementById('nav-list');
+    
+    mobileToggle.addEventListener('click', () => {
+      navList.classList.toggle('active');
+    });
+    
+    // Scroll Header
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('.header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Reveal on Scroll
+    function reveal() {
+      const reveals = document.querySelectorAll('.reveal');
+      
+      for (let i = 0; i < reveals.length; i++) {
+        const windowHeight = window.innerHeight;
+        const elementTop = reveals[i].getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < windowHeight - elementVisible) {
+          reveals[i].classList.add('active');
+        }
+      }
+    }
+    
+    window.addEventListener('scroll', reveal);
+    reveal(); // To check for elements in view on page load
+    
+    // Counter Animation
+    function animateCounter(id, start, end, duration) {
+      let startTimestamp = null;
+      const element = document.getElementById(id);
+      
+      function step(timestamp) {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const value = Math.floor(progress * (end - start) + start);
+        element.textContent = value + '+';
+        
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      }
+      
+      window.requestAnimationFrame(step);
+    }
+    
+    // Typing Animation
+    const heroTitle = document.querySelector('.hero-title');
+    const text = heroTitle.innerHTML;
+    const cursor = document.createElement('span');
+    cursor.classList.add('cursor');
+    
+    // Intersection Observer for counter animation
+    const observerOptions = {
+      threshold: 0.5,
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter('counter-1', 0, 400, 2000);
+          animateCounter('counter-2', 0, 50, 2000);
+          animateCounter('counter-3', 0, 18, 2000);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    observer.observe(document.querySelector('.experience-badges'));
+
+    // Portfolio Filter
+  const filterButtons = document.querySelectorAll('.portfolio-filter-btn');
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+  
+  // Initialize all items as visible
+  portfolioItems.forEach(item => {
+    item.style.display = 'block';
+  });
+  
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove active class from all buttons
+      filterButtons.forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      // Add active class to clicked button
+      button.classList.add('active');
+      
+      const filterValue = button.getAttribute('data-filter');
+      
+      portfolioItems.forEach(item => {
+        if (filterValue === 'all') {
+          item.style.display = 'block';
+          setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'scale(1)';
+          }, 100);
+        } else if (item.getAttribute('data-category') === filterValue) {
+          item.style.display = 'block';
+          setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'scale(1)';
+          }, 100);
+        } else {
+          item.style.opacity = '0';
+          item.style.transform = 'scale(0.8)';
+          setTimeout(() => {
+            item.style.display = 'none';
+          }, 300);
+        }
+      });
+    });
+  });
+  
+  // Portfolio Modal
+  const modal = document.getElementById('portfolio-modal');
+  const modalImage = document.getElementById('modal-image');
+  const modalTitle = document.getElementById('modal-title');
+  const modalCategory = document.getElementById('modal-category');
+  const modalClient = document.getElementById('modal-client');
+  const modalDate = document.getElementById('modal-date');
+  const modalSkills = document.getElementById('modal-skills');
+  const modalDescription = document.getElementById('modal-description');
+  const modalLink = document.getElementById('modal-link');
+  const modalClose = document.querySelector('.portfolio-modal-close');
+  const modalDetailsTriggers = document.querySelectorAll('.portfolio-details-trigger');
+  
+  // Portfolio data
+  const portfolioData = [
+    {
+      id: 1,
+      title: 'E-commerce Platform',
+      category: 'Web Design',
+      client: 'Fashion Retailer',
+      date: 'January 2025',
+      skills: 'HTML, CSS, JavaScript, React, Node.js',
+      description: 'A comprehensive e-commerce platform featuring product catalog, user accounts, shopping cart, payment processing, and order management. The site is fully responsive and optimized for mobile shopping experiences.',
+      link: '#',
+      image: '/api/placeholder/800/500'
+    },
+    {
+      id: 2,
+      title: 'Task Management App',
+      category: 'Application',
+      client: 'Productivity Startup',
+      date: 'December 2024',
+      skills: 'React, Redux, Firebase, Material UI',
+      description: 'A feature-rich task management application that helps teams organize projects, assign tasks, track progress, and meet deadlines. Includes real-time updates, notifications, and collaboration tools.',
+      link: '#',
+      image: '/api/placeholder/800/500'
+    },
+    {
+      id: 3,
+      title: 'Dashboard UI',
+      category: 'UI/UX Design',
+      client: 'Analytics Company',
+      date: 'November 2024',
+      skills: 'Figma, Adobe XD, Tailwind CSS',
+      description: 'A clean and intuitive dashboard interface that visualizes complex data through charts, graphs, and interactive elements. The design prioritizes accessibility while maintaining a modern aesthetic.',
+      link: '#',
+      image: '/api/placeholder/800/500'
+    },
+    {
+      id: 4,
+      title: 'Startup Landing Page',
+      category: 'Web Design',
+      client: 'Tech Startup',
+      date: 'October 2024',
+      skills: 'HTML, CSS, JavaScript, GSAP',
+      description: 'A high-converting landing page designed to showcase the startup\'s product, highlight key features, and capture leads. Includes smooth animations, testimonials section, and integrated contact form.',
+      link: '#',
+      image: '/api/placeholder/800/500'
+    },
+    {
+      id: 5,
+      title: 'Fitness Tracking App',
+      category: 'Application',
+      client: 'Health & Wellness Brand',
+      date: 'September 2024',
+      skills: 'React Native, Redux, Node.js, MongoDB',
+      description: 'A mobile application that helps users track workouts, monitor nutrition, set goals, and view progress over time. Features include custom workout plans, progress charts, and social sharing capabilities.',
+      link: '#',
+      image: '/api/placeholder/800/500'
+    },
+    {
+      id: 6,
+      title: 'Banking App UI',
+      category: 'UI/UX Design',
+      client: 'Financial Institution',
+      date: 'August 2024',
+      skills: 'Figma, Prototyping, Design Systems',
+      description: 'A user-centered banking application interface that simplifies financial management while maintaining strong security. The design includes account overview, transaction history, bill payments, and investment tracking.',
+      link: '#',
+      image: '/api/placeholder/800/500'
+    }
+  ];
+  
+  // Open modal with project details
+  modalDetailsTriggers.forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      const projectId = parseInt(trigger.getAttribute('data-id'));
+      const project = portfolioData.find(item => item.id === projectId);
+      
+      if (project) {
+        modalImage.src = project.image;
+        modalTitle.textContent = project.title;
+        modalCategory.textContent = project.category;
+        modalClient.textContent = project.client;
+        modalDate.textContent = project.date;
+        modalSkills.textContent = project.skills;
+        modalDescription.textContent = project.description;
+        modalLink.href = project.link;
+        
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+  
+  // Close modal
+  modalClose.addEventListener('click', () => {
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  });
+  
+  // Close modal on outside click
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+  });
+  
+  // Close modal on ESC key press
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+  });
+  </script>
+</body>
+</html>
